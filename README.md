@@ -1,6 +1,5 @@
 ### Hi there 👋, my name is Felix
 #### Design & Development
-![Design & Development](https://arturssmirnovs.github.io/github-profile-readme-generator/images/banner.png)
 
 I'm Felix from Spain and I'm doing the Full Stack Web Development Master and the Blockchain Development Master at ConquerBlocks. I'm passionate about both the creation of web sites, desktop/mobile applications, and Blockchain technology.
 
