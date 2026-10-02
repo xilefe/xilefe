@@ -1,41 +1,42 @@
 ---
 name: yt-retention
 description: >-
-  Read a YouTube Studio audience-retention export and find where viewers
-  actually leave, then say what to change. Use for "why do people stop
-  watching", "my retention is bad", a pasted retention chart or CSV, or "fix
-  my pacing".
+  Lee una exportación de retención de audiencia de YouTube Studio, encuentra
+  dónde se va realmente la gente y di qué cambiar. Úsala para "por qué la
+  gente deja de ver", "mi retención es mala", un gráfico o CSV de retención
+  pegado, o "arregla mi ritmo".
 ---
 
 # yt-retention
 
-The retention graph is the only honest feedback YouTube gives you. Almost nobody exports it.
+El gráfico de retención es la única opinión sincera que te da YouTube. Casi nadie lo exporta.
 
 ```bash
-python3 retention.py retention.csv --duration 600
-python3 retention.py retention.csv --transcript transcript.srt
+python3 retention.py retencion.csv --duration 600
+python3 retention.py retencion.csv --transcript transcripcion.srt
 ```
 
-Getting the file: Studio -> a video -> Analytics -> Engagement -> the audience-retention chart ->
-the download icon -> "Audience retention".
+Cómo conseguir el archivo: Studio -> un vídeo -> Estadísticas -> Interacción -> el gráfico de
+retención de la audiencia -> el icono de descarga -> "Retención de la audiencia".
 
-## Three different problems
+## Tres problemas distintos
 
-- **HOOK LEAK** - what is lost in the first 30 seconds. Under 25% is healthy. This is always the
-  first thing to fix and it is always the first fifteen seconds of script, never the edit.
-- **CLIFFS** - single steep drops. A cliff is a moment: a topic change with no signposting, a
-  sponsor read, a long setup. With `--transcript` the tool prints what was being said there, which
-  is what makes the report actionable instead of interesting.
-- **SLIDE** - the steady bleed across the middle. A flat slide is pacing. The fix is cutting, not
-  rewriting.
+- **FUGA EN EL GANCHO**: lo que se pierde en los primeros 30 segundos. Menos del 25% es sano. Siempre
+  es lo primero que hay que arreglar, y siempre está en los primeros quince segundos del guion, nunca
+  en la edición.
+- **CAÍDAS**: bajadas bruscas puntuales. Una caída es un momento: un cambio de tema sin avisar, un
+  patrocinio, una introducción larga. Con `--transcript` la herramienta muestra qué se estaba
+  diciendo ahí, que es lo que hace que el informe sirva para actuar y no solo sea curioso.
+- **GOTEO**: la pérdida constante en la parte central. Un goteo uniforme es cuestión de ritmo. Se
+  arregla recortando, no reescribiendo.
 
-## What to hand back
+## Qué entregar
 
-Name the single biggest leak and one change for it. Not a list of five. Then, only if asked, the
-rest. And if the hook leak is healthy and the slide is flat, say the video is fine and the problem
-is packaging - send them to `/yt-package`.
+Nombra la fuga más grande y un cambio para ella. No una lista de cinco. Después, solo si te lo piden,
+el resto. Y si la fuga del gancho está sana y el goteo es plano, di que el vídeo está bien y que el
+problema es el título y la miniatura: mándalo a `/yt-package`.
 
-## The gate
+## El filtro final
 
-Nothing here publishes. This skill writes and you publish. Every output ends in a block the user
-copies, and the last line of every run is the question: **ship it, or change it?**
+Aquí no se publica nada. Esta skill escribe y tú publicas. Cada resultado termina en un bloque que
+el usuario copia, y la última línea de cada ejecución es la pregunta: **¿lo publicas o lo cambias?**

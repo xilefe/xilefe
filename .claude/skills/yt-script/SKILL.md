@@ -1,58 +1,59 @@
 ---
 name: yt-script
 description: >-
-  Write a YouTube video script from a raw idea - hook options off 21
-  formulas, scored, then the full spoken script with the retention beats
-  marked. Use whenever the user wants a video script, a hook, an opening
-  line, "what should I say", "write my next video", or is about to record
-  and does not have the first fifteen seconds yet.
+  Escribe el guion de un vídeo de YouTube a partir de una idea suelta: opciones
+  de gancho con 21 fórmulas, puntuadas, y después el guion hablado completo
+  con los momentos de retención marcados. Úsala cuando el usuario quiera un
+  guion, un gancho, una frase de arranque, "qué digo", "escríbeme el próximo
+  vídeo", o cuando esté a punto de grabar y aún no tenga los primeros quince
+  segundos.
 ---
 
 # yt-script
 
-One idea into a script somebody finishes.
+Una idea convertida en un guion que la gente ve hasta el final.
 
-Two tools live in this folder and both actually run. Use them. Do not eyeball the hook.
+En esta carpeta hay dos herramientas y las dos funcionan de verdad. Úsalas. No evalúes el gancho a ojo.
 
 ```bash
-python3 hookscore.py hooks.txt              # rank your hook options
-python3 hookscore.py --hook "one line"      # score a single one
+python3 hookscore.py ganchos.txt              # ordena tus opciones de gancho
+python3 hookscore.py --hook "una frase"       # puntúa uno solo
 ```
 
-## Before you write
+## Antes de escribir
 
-1. Read `~/.claude/youtube/voice.md` if it exists. That is the user's voice profile: how they talk
-   on camera, the words they never use, who they are talking to, what they will not claim. If it
-   does not exist, ask for **three of their own videos**, read or transcribe them, infer the voice,
-   and write the file. A script in the wrong voice is worse than no script, because they have to
-   read it out loud.
-2. Never invent a number, a result or a source. If a figure would strengthen it and you do not have
-   one, ask for it or write the line without it.
+1. Lee `~/.claude/youtube/voice.md` si existe. Es el perfil de voz del usuario: cómo habla delante
+   de la cámara, las palabras que nunca usa, a quién le habla y lo que no va a afirmar. Si no existe,
+   pide **tres de sus propios vídeos**, léelos o transcríbelos, deduce la voz y escribe el archivo.
+   Un guion con la voz equivocada es peor que no tener guion, porque tiene que leerlo en voz alta.
+2. No te inventes nunca un número, un resultado ni una fuente. Si una cifra lo reforzaría y no la
+   tienes, pídela o escribe la frase sin ella.
 
-## The shape
+## La estructura
 
-**The first 15 seconds is the whole job.** It does three things or the video leaks: confirm the
-click the title promised, open a question the viewer cannot close, and prove the payoff exists.
+**Los primeros 15 segundos son todo el trabajo.** Tienen que hacer tres cosas o el vídeo pierde
+gente: confirmar el clic que prometía el título, abrir una pregunta que el espectador no puede
+cerrar solo y demostrar que la recompensa existe.
 
-1. **Hook.** Write FIVE against [the 21 formulas](hooks.json), run them through `hookscore.py`,
-   keep the top two, and show the user both with their scores. Never hand over one hook.
-2. **The turn** (0:15-0:45). Say what the video is going to do, in one sentence, and start doing it.
-   No channel intro, no "before we get started", no subscribe pitch. Those are the single most
-   common cause of the 0:30 cliff.
-3. **The body.** One idea per beat. Mark each beat with what is ON SCREEN, not just what is said -
-   a talking head with nothing to look at is a podcast.
-4. **The payoff.** Deliver the thing the hook promised, explicitly, and say that you are delivering
-   it: "that is the prompt, it is in the description".
-5. **The close.** One ask. Not three.
+1. **Gancho.** Escribe CINCO con [las 21 fórmulas](hooks.json), pásalos por `hookscore.py`, quédate
+   con los dos mejores y enséñale al usuario los dos con su puntuación. Nunca entregues un solo gancho.
+2. **El giro** (0:15-0:45). Di en una frase qué va a hacer el vídeo y empieza a hacerlo. Nada de
+   intro del canal, nada de "antes de empezar", nada de pedir la suscripción. Son la causa más
+   habitual del desplome en el 0:30.
+3. **El cuerpo.** Una idea por bloque. Marca en cada bloque lo que se VE EN PANTALLA, no solo lo
+   que se dice: una cabeza hablando sin nada que mirar es un pódcast.
+4. **La recompensa.** Entrega lo que prometía el gancho, de forma explícita, y di que lo estás
+   entregando: "ese es el prompt, lo tienes en la descripción".
+5. **El cierre.** Una sola petición. No tres.
 
-## What to hand back
+## Qué entregar
 
-- the two best hooks with their scored panels
-- the script, beat by beat, with `[ON SCREEN: ...]` on every beat
-- the runtime estimate at 150 words per minute
-- one line naming which formula the winning hook used and why it fits this idea
+- los dos mejores ganchos con su panel de puntuación
+- el guion, bloque a bloque, con `[EN PANTALLA: ...]` en cada bloque
+- la duración estimada a 150 palabras por minuto
+- una línea que diga qué fórmula usa el gancho ganador y por qué encaja con esta idea
 
-## The gate
+## El filtro final
 
-Nothing here publishes. This skill writes and you publish. Every output ends in a block the user
-copies, and the last line of every run is the question: **ship it, or change it?**
+Aquí no se publica nada. Esta skill escribe y tú publicas. Cada resultado termina en un bloque que
+el usuario copia, y la última línea de cada ejecución es la pregunta: **¿lo publicas o lo cambias?**

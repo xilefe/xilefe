@@ -1,48 +1,48 @@
 ---
 name: yt-audit
 description: >-
-  Audit a YouTube channel end to end - packaging, consistency, the first
-  fifteen seconds, and what to fix first. Use for "audit my channel", "why
-  isn't my channel growing", "review my videos", or a pasted channel URL.
+  Audita un canal de YouTube de principio a fin: título y miniatura,
+  constancia, los primeros quince segundos y qué arreglar primero. Úsala para
+  "audita mi canal", "por qué no crece mi canal", "revisa mis vídeos", o
+  cuando el usuario pegue la URL de un canal.
 ---
 
 # yt-audit
 
-An audit that lists twenty problems is a way of avoiding the one that matters. This ends in ONE fix.
+Una auditoría que enumera veinte problemas es una forma de evitar el que importa. Esta termina en UN solo arreglo.
 
-## Before you write
+## Antes de escribir
 
-1. Read `~/.claude/youtube/voice.md` if it exists. That is the user's voice profile: how they talk
-   on camera, the words they never use, who they are talking to, what they will not claim. If it
-   does not exist, ask for **three of their own videos**, read or transcribe them, infer the voice,
-   and write the file. A script in the wrong voice is worse than no script, because they have to
-   read it out loud.
-2. Never invent a number, a result or a source. If a figure would strengthen it and you do not have
-   one, ask for it or write the line without it.
+1. Lee `~/.claude/youtube/voice.md` si existe. Es el perfil de voz del usuario: cómo habla delante
+   de la cámara, las palabras que nunca usa, a quién le habla y lo que no va a afirmar. Si no existe,
+   pide **tres de sus propios vídeos**, léelos o transcríbelos, deduce la voz y escribe el archivo.
+   Un guion con la voz equivocada es peor que no tener guion, porque tiene que leerlo en voz alta.
+2. No te inventes nunca un número, un resultado ni una fuente. Si una cifra lo reforzaría y no la
+   tienes, pídela o escribe la frase sin ella.
 
-## What to look at, in this order
+## Qué mirar, en este orden
 
-1. **The last ten titles, as a set.** Read them as a list, the way the channel page shows them. Do
-   they promise different things? Run them through `../yt-package/title.py`. A channel where every
-   title is the same shape has a format problem, not a title problem.
-2. **The thumbnails, at feed size.** Shrink them. What survives? If three of them are unreadable at
-   that size, that is the fix and nothing else matters yet.
-3. **The first fifteen seconds of the three most recent.** Transcribe them and score with
-   `../yt-script/hookscore.py`. This is where most channels lose.
-4. **Upload rhythm.** Not frequency - CONSISTENCY. Six videos in one week and then nothing for a
-   month is worse than one a fortnight forever.
-5. **The retention shape**, if they can export it. `/yt-retention`.
+1. **Los diez últimos títulos, como conjunto.** Léelos en lista, como los muestra la página del
+   canal. ¿Prometen cosas distintas? Pásalos por `../yt-package/title.py`. Un canal en el que todos
+   los títulos tienen la misma forma tiene un problema de formato, no de títulos.
+2. **Las miniaturas, al tamaño del feed.** Encógelas. ¿Qué sobrevive? Si tres no se leen a ese
+   tamaño, ese es el arreglo y nada más importa todavía.
+3. **Los primeros quince segundos de los tres vídeos más recientes.** Transcríbelos y puntúalos con
+   `../yt-script/hookscore.py`. Aquí es donde pierden la mayoría de los canales.
+4. **El ritmo de subida.** No la frecuencia, la CONSTANCIA. Seis vídeos en una semana y luego nada
+   durante un mes es peor que uno cada quince días para siempre.
+5. **La forma de la retención**, si pueden exportarla. `/yt-retention`.
 
-## What to hand back
+## Qué entregar
 
-- The single biggest fix, named, with what to do this week.
-- Three things that are already working, so they do not break them. Be specific; "your energy is
-  good" is not an observation.
-- What NOT to do yet, and why.
+- El arreglo más importante, con nombre, y qué hacer esta semana.
+- Tres cosas que ya funcionan, para que no las rompan. Sé concreto: "tienes buena energía" no es una
+  observación.
+- Qué NO hacer todavía, y por qué.
 
-Never open an audit with praise you do not mean, and never end one with a list of twenty things.
+No empieces nunca una auditoría con elogios que no sientes, y no la termines nunca con una lista de veinte cosas.
 
-## The gate
+## El filtro final
 
-Nothing here publishes. This skill writes and you publish. Every output ends in a block the user
-copies, and the last line of every run is the question: **ship it, or change it?**
+Aquí no se publica nada. Esta skill escribe y tú publicas. Cada resultado termina en un bloque que
+el usuario copia, y la última línea de cada ejecución es la pregunta: **¿lo publicas o lo cambias?**
