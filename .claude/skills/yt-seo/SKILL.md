@@ -1,47 +1,49 @@
 ---
 name: yt-seo
 description: >-
-  Write the description, tags and search-facing text for a YouTube video,
-  aimed at the query a real person types. Use for "write my description",
-  "tags", "SEO", "help this video get found", "nobody is finding this".
+  Escribe la descripción, las etiquetas y el texto pensado para la búsqueda
+  de un vídeo de YouTube, apuntando a lo que una persona real escribe en el
+  buscador. Úsala para "escríbeme la descripción", "etiquetas", "tags", "SEO",
+  "ayuda a que encuentren este vídeo", "nadie encuentra esto".
 ---
 
 # yt-seo
 
-Search is a smaller lever than packaging and a bigger one than people think for evergreen videos.
-For a video aimed at the subscriber feed, say so and spend the effort on `/yt-package` instead.
+La búsqueda es una palanca más pequeña que el título y la miniatura, y más grande de lo que la gente
+cree en los vídeos atemporales. Si el vídeo está pensado para el feed de suscriptores, dilo y dedica
+el esfuerzo a `/yt-package`.
 
-## Before you write
+## Antes de escribir
 
-1. Read `~/.claude/youtube/voice.md` if it exists. That is the user's voice profile: how they talk
-   on camera, the words they never use, who they are talking to, what they will not claim. If it
-   does not exist, ask for **three of their own videos**, read or transcribe them, infer the voice,
-   and write the file. A script in the wrong voice is worse than no script, because they have to
-   read it out loud.
-2. Never invent a number, a result or a source. If a figure would strengthen it and you do not have
-   one, ask for it or write the line without it.
+1. Lee `~/.claude/youtube/voice.md` si existe. Es el perfil de voz del usuario: cómo habla delante
+   de la cámara, las palabras que nunca usa, a quién le habla y lo que no va a afirmar. Si no existe,
+   pide **tres de sus propios vídeos**, léelos o transcríbelos, deduce la voz y escribe el archivo.
+   Un guion con la voz equivocada es peor que no tener guion, porque tiene que leerlo en voz alta.
+2. No te inventes nunca un número, un resultado ni una fuente. Si una cifra lo reforzaría y no la
+   tienes, pídela o escribe la frase sin ella.
 
-## The description
+## La descripción
 
-- **The first two lines are the only ones anyone reads.** They show above "...more" and they are
-  the search snippet. Say what the video gives them, in the words they would have typed.
-- Then the link or the resource, if there is one, so it is above the fold.
-- Then chapters (`/yt-chapters` writes them).
-- Then the long version: what is covered, who it is for, what it assumes.
+- **Las dos primeras líneas son las únicas que lee alguien.** Salen antes de "...más" y son el
+  fragmento que aparece en la búsqueda. Di qué les da el vídeo, con las palabras que habrían escrito.
+- Después, el enlace o el recurso, si lo hay, para que quede a la vista sin desplegar.
+- Después, los capítulos (los escribe `/yt-chapters`).
+- Después, la versión larga: qué se cubre, para quién es y qué da por sabido.
 
-## Tags, honestly
+## Etiquetas, con sinceridad
 
-Tags are a weak signal and YouTube has said so. Use them for disambiguation - spellings, the tool
-names, the abbreviations people actually type - and stop. Fifteen is plenty. A wall of tags is not
-a strategy and stuffing unrelated ones is against the terms.
+Las etiquetas pesan poco y YouTube lo ha dicho. Úsalas para desambiguar (variantes de escritura,
+nombres de herramientas, las abreviaturas que la gente escribe de verdad) y para. Quince son más
+que suficientes. Una pared de etiquetas no es una estrategia, y meter etiquetas que no tienen nada
+que ver va contra las normas.
 
-## The query test
+## La prueba de las búsquedas
 
-Before handing anything over, write the three search queries this video should win, and check the
-title and first two description lines contain the words in those queries. If they do not, the
-problem is the title, not the description.
+Antes de entregar nada, escribe las tres búsquedas que este vídeo debería ganar y comprueba que el
+título y las dos primeras líneas de la descripción contienen las palabras de esas búsquedas. Si no
+las contienen, el problema es el título, no la descripción.
 
-## The gate
+## El filtro final
 
-Nothing here publishes. This skill writes and you publish. Every output ends in a block the user
-copies, and the last line of every run is the question: **ship it, or change it?**
+Aquí no se publica nada. Esta skill escribe y tú publicas. Cada resultado termina en un bloque que
+el usuario copia, y la última línea de cada ejecución es la pregunta: **¿lo publicas o lo cambias?**

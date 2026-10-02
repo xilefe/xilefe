@@ -1,51 +1,51 @@
 ---
 name: yt-comment
 description: >-
-  Draft replies to YouTube comments in the creator's voice, triaged by which
-  ones are worth answering. Use for "reply to my comments", "handle the
-  comment section", "someone asked X", or a pasted comment thread.
+  Redacta respuestas a comentarios de YouTube con la voz del creador,
+  clasificadas según cuáles merece la pena contestar. Úsala para "responde a
+  mis comentarios", "gestiona los comentarios", "alguien ha preguntado X", o
+  cuando el usuario pegue un hilo de comentarios.
 ---
 
 # yt-comment
 
-The comment section is a retention surface, not a chore. Replies in the first few hours are what
-decide whether a thread becomes a conversation other people read.
+La sección de comentarios es una superficie de retención, no una tarea pesada. Las respuestas de las
+primeras horas son las que deciden si un hilo se convierte en una conversación que otros leen.
 
-## Before you write
+## Antes de escribir
 
-1. Read `~/.claude/youtube/voice.md` if it exists. That is the user's voice profile: how they talk
-   on camera, the words they never use, who they are talking to, what they will not claim. If it
-   does not exist, ask for **three of their own videos**, read or transcribe them, infer the voice,
-   and write the file. A script in the wrong voice is worse than no script, because they have to
-   read it out loud.
-2. Never invent a number, a result or a source. If a figure would strengthen it and you do not have
-   one, ask for it or write the line without it.
+1. Lee `~/.claude/youtube/voice.md` si existe. Es el perfil de voz del usuario: cómo habla delante
+   de la cámara, las palabras que nunca usa, a quién le habla y lo que no va a afirmar. Si no existe,
+   pide **tres de sus propios vídeos**, léelos o transcríbelos, deduce la voz y escribe el archivo.
+   Un guion con la voz equivocada es peor que no tener guion, porque tiene que leerlo en voz alta.
+2. No te inventes nunca un número, un resultado ni una fuente. Si una cifra lo reforzaría y no la
+   tienes, pídela o escribe la frase sin ella.
 
-## Triage first, always
+## Primero clasifica, siempre
 
-Sort what the user pastes into four piles and say how many are in each before writing anything:
+Reparte lo que pegue el usuario en cuatro montones y di cuántos hay en cada uno antes de escribir nada:
 
-1. **Questions** - answer them. These are your next video's topics, so note the repeats.
-2. **Corrections** - if they are right, say so plainly and thank them. Never argue a fact you
-   cannot check.
-3. **Praise** - reply to a few, briefly, with something specific from their comment. A wall of
-   identical "thank you!" replies reads as automated because it is.
-4. **Bait** - do not reply. Say so and move on. Never write a comeback, however deserved.
+1. **Preguntas**: contéstalas. Son los temas de tus próximos vídeos, así que apunta las que se repiten.
+2. **Correcciones**: si tienen razón, dilo claramente y da las gracias. No discutas nunca un dato
+   que no puedes comprobar.
+3. **Elogios**: responde a algunos, brevemente, con algo concreto de su comentario. Una pared de
+   "¡gracias!" idénticos parece automática porque lo es.
+4. **Provocaciones**: no respondas. Dilo y sigue. No escribas nunca una réplica, por merecida que sea.
 
-## Writing the reply
+## Cómo escribir la respuesta
 
-- Under 30 words. A long reply in a comment thread is a blog post nobody asked for.
-- Answer the actual question in the first sentence.
-- One question back, only when it is real.
-- No emoji unless the user's own replies use them. Check their voice file.
-- Never promise a video you have not agreed to make.
+- Menos de 30 palabras. Una respuesta larga en un hilo de comentarios es una entrada de blog que nadie ha pedido.
+- Contesta a la pregunta real en la primera frase.
+- Como mucho una pregunta de vuelta, y solo si es de verdad.
+- Sin emojis, salvo que las respuestas del propio usuario los usen. Mira su archivo de voz.
+- No prometas nunca un vídeo que no se haya decidido hacer.
 
-## The heart and the pin
+## El corazón y el fijado
 
-Say which ONE comment to pin and why. Pin the question the most people also have, not the nicest
-one. Heart generously - it costs nothing and it is visible.
+Di qué comentario fijar (solo UNO) y por qué. Fija la pregunta que más gente tiene también, no el
+comentario más bonito. Da corazones sin miedo: no cuestan nada y se ven.
 
-## The gate
+## El filtro final
 
-Nothing here publishes. This skill writes and you publish. Every output ends in a block the user
-copies, and the last line of every run is the question: **ship it, or change it?**
+Aquí no se publica nada. Esta skill escribe y tú publicas. Cada resultado termina en un bloque que
+el usuario copia, y la última línea de cada ejecución es la pregunta: **¿lo publicas o lo cambias?**

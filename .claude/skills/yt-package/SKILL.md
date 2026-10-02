@@ -1,49 +1,51 @@
 ---
 name: yt-package
 description: >-
-  Write and lint the title and thumbnail for a YouTube video as one pairing,
-  checking truncation, duplication and vagueness before publish. Use for
-  "title ideas", "what should I call this", "thumbnail text", "my CTR is
-  bad", packaging, or any request to rename or repackage an existing video.
+  Escribe y revisa el título y la miniatura de un vídeo de YouTube como una
+  sola pareja, comprobando que no se corten, que no se repitan y que no sean
+  vagos antes de publicar. Úsala para "ideas de título", "cómo lo llamo",
+  "texto de la miniatura", "mi CTR es malo", o cualquier petición de
+  renombrar o reempaquetar un vídeo.
 ---
 
 # yt-package
 
-The title and the thumbnail are ONE unit. Writing them separately is why most packaging fails: the
-thumbnail repeats the title, and half the click surface says the same thing twice.
+El título y la miniatura son UNA unidad. Escribirlos por separado es la razón por la que falla casi
+todo el empaquetado: la miniatura repite el título y la mitad de lo que invita al clic dice dos veces
+lo mismo.
 
 ```bash
-python3 title.py --title "..." --thumb "AI RAN IT"
-python3 title.py titles.txt            # one per line, ranked
+python3 title.py --title "..." --thumb "LA IA LO HIZO"
+python3 title.py titulos.txt            # uno por línea, ordenados
 ```
 
-## Before you write
+## Antes de escribir
 
-1. Read `~/.claude/youtube/voice.md` if it exists. That is the user's voice profile: how they talk
-   on camera, the words they never use, who they are talking to, what they will not claim. If it
-   does not exist, ask for **three of their own videos**, read or transcribe them, infer the voice,
-   and write the file. A script in the wrong voice is worse than no script, because they have to
-   read it out loud.
-2. Never invent a number, a result or a source. If a figure would strengthen it and you do not have
-   one, ask for it or write the line without it.
+1. Lee `~/.claude/youtube/voice.md` si existe. Es el perfil de voz del usuario: cómo habla delante
+   de la cámara, las palabras que nunca usa, a quién le habla y lo que no va a afirmar. Si no existe,
+   pide **tres de sus propios vídeos**, léelos o transcríbelos, deduce la voz y escribe el archivo.
+   Un guion con la voz equivocada es peor que no tener guion, porque tiene que leerlo en voz alta.
+2. No te inventes nunca un número, un resultado ni una fuente. Si una cifra lo reforzaría y no la
+   tienes, pídela o escribe la frase sin ella.
 
-## Rules the tool enforces, and why
+## Reglas que aplica la herramienta, y por qué
 
-- **60 characters** is where desktop search truncates, **40** is a mobile home feed. Both are
-  reported because they fail differently: a desktop cut loses the tail, a mobile cut can lose the
-  subject.
-- **The thumbnail must not repeat the title.** Different words, same promise.
-- **Three words maximum on the thumbnail.** At feed size a fourth word is a grey smear.
-- **A number, a name or a date** beats every adjective available to you.
-- **Two all-caps words is the ceiling** before a title reads as spam.
+- **60 caracteres** es donde corta la búsqueda en ordenador y **40** el feed de inicio en móvil. Se
+  informan los dos porque fallan de forma distinta: el corte en ordenador pierde el final, el del
+  móvil puede perder el tema.
+- **La miniatura no debe repetir el título.** Palabras distintas, la misma promesa.
+- **Tres palabras como máximo en la miniatura.** Al tamaño del feed, una cuarta palabra es una mancha gris.
+- **Un número, un nombre o una fecha** gana a cualquier adjetivo.
+- **Dos palabras en mayúsculas es el techo** antes de que un título parezca spam.
 
-## Write ten, keep two
+## Escribe diez, quédate con dos
 
-Generate ten titles, run them all through `title.py`, show the user the top three with their scores
-and the specific issue on each. For the winner, write the thumbnail brief: the expression, the
-framing, the three words, and what the background has to do to hold contrast at feed size.
+Genera diez títulos, pásalos todos por `title.py` y enséñale al usuario los tres mejores con su
+puntuación y el problema concreto de cada uno. Para el ganador, escribe el encargo de la miniatura:
+la expresión, el encuadre, las tres palabras y qué tiene que hacer el fondo para mantener el
+contraste al tamaño del feed.
 
-## The gate
+## El filtro final
 
-Nothing here publishes. This skill writes and you publish. Every output ends in a block the user
-copies, and the last line of every run is the question: **ship it, or change it?**
+Aquí no se publica nada. Esta skill escribe y tú publicas. Cada resultado termina en un bloque que
+el usuario copia, y la última línea de cada ejecución es la pregunta: **¿lo publicas o lo cambias?**

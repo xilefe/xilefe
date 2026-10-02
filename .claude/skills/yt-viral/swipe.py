@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
-"""swipe.py - rank collected videos by how far each beat its OWN channel, then name the formula.
+"""swipe.py - ordena vídeos recopilados según cuánto superó cada uno a SU PROPIO canal y nombra la fórmula.
 
-    python3 swipe.py collected.json
-    python3 swipe.py collected.json --min 2.0 --json
+    python3 swipe.py recopilados.json
+    python3 swipe.py recopilados.json --min 2.0 --json
 
-Input is a list you collected - one object per video:
+La entrada es una lista que has reunido, un objeto por vídeo:
 
-    [{"channel":"Some Channel","title":"...","views":412000,"url":"...","duration":613}, ...]
+    [{"channel":"Un canal","title":"...","views":412000,"url":"...","duration":613}, ...]
 
-Raw view counts rank channel size, not ideas. A 400k video on a 2M-subscriber channel is a normal
-Tuesday; a 400k video on a channel whose median is 30k is the thing worth studying. So every video
-is scored as a MULTIPLE OF ITS OWN CHANNEL'S MEDIAN, which needs at least four videos per channel
-to mean anything - the tool says so rather than quietly ranking on noise.
+Las visitas en bruto ordenan por tamaño del canal, no por ideas. Un vídeo de 400.000 visitas en un
+canal de 2 millones de suscriptores es un martes cualquiera; uno de 400.000 en un canal cuya mediana
+es 30.000 es lo que merece la pena estudiar. Por eso cada vídeo se puntúa como un MÚLTIPLO DE LA
+MEDIANA DE SU PROPIO CANAL, que necesita al menos cuatro vídeos por canal para significar algo: la
+herramienta lo avisa en vez de ordenar ruido sin decir nada.
 
-The formula comes from skills/yt-script/hooks.json, matched against the TITLE. It is a judgement
-about the words on screen, not a claim about why the video worked.
+La fórmula sale de yt-script/hooks.json, comparada con el TÍTULO (en español o en inglés). Es una
+valoración de las palabras que se ven, no una afirmación sobre por qué funcionó el vídeo.
 """
 import json, os, re, statistics, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FORMULAS = json.load(open(os.path.join(HERE, "..", "yt-script", "hooks.json")))["hooks"]
+FORMULAS = json.load(open(os.path.join(HERE, "..", "yt-script", "hooks.json"), encoding="utf-8"))["hooks"]
 
 def classify(title):
     scored = []
@@ -27,7 +28,7 @@ def classify(title):
         n = sum(1 for p in f["match"] if re.search(p, title, re.I))
         if n: scored.append((n, f["name"]))
     scored.sort(reverse=True)
-    return scored[0][1] if scored else "Unclassified"
+    return scored[0][1] if scored else "Sin clasificar"
 
 def main():
     a = sys.argv[1:]
@@ -54,18 +55,18 @@ def main():
     out = [r for r in out if r["multiple"] >= lo]
     out.sort(key=lambda r: -r["multiple"])
     if as_json: print(json.dumps({"outliers": out, "skipped_thin_channels": thin}, indent=1)); return
-    print(f"\n  {len(rows)} videos across {len(by)} channels, outliers at {lo}x or better\n")
+    print(f"\n  {len(rows)} vídeos de {len(by)} canales, destacados a partir de {lo}x\n")
     for r in out[:25]:
-        print(f"    {r['multiple']:5.2f}x  {r['views']:>9,}  vs {r['median']:>9,} median   {r['channel'][:22]:<22} {r['title'][:52]}")
+        print(f"    {r['multiple']:5.2f}x  {r['views']:>9,}  vs {r['median']:>9,} mediana  {r['channel'][:22]:<22} {r['title'][:52]}")
         print(f"            {r['formula']}")
-    if not out: print("    nothing cleared the threshold - collect more per channel or lower --min")
+    if not out: print("    ninguno supera el umbral: reúne más vídeos por canal o baja --min")
     if thin:
-        print(f"\n  skipped {len(thin)} channel(s) with under 4 videos collected - a median off one or")
-        print( "  two videos is not a median: " + ", ".join(f"{c} ({n})" for c, n in thin[:6]))
+        print(f"\n  se han saltado {len(thin)} canal(es) con menos de 4 vídeos: una mediana de uno o")
+        print( "  dos vídeos no es una mediana: " + ", ".join(f"{c} ({n})" for c, n in thin[:6]))
     counts = {}
     for r in out: counts[r["formula"]] = counts.get(r["formula"], 0) + 1
     if counts:
-        print("\n  formulas among the outliers")
+        print("\n  fórmulas entre los destacados")
         for f, n in sorted(counts.items(), key=lambda x: -x[1]):
             print(f"    {n:2d}x  {f}")
     print()

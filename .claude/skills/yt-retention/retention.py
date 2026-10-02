@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
-"""retention.py - read a YouTube Studio audience-retention export and find the leaks.
+"""retention.py - lee una exportación de retención de audiencia de YouTube Studio y encuentra las fugas.
 
-    python3 retention.py retention.csv
-    python3 retention.py retention.csv --transcript transcript.srt   # names what was said at each drop
-    python3 retention.py retention.csv --json
+    python3 retention.py retencion.csv
+    python3 retention.py retencion.csv --transcript transcripcion.srt   # dice qué se decía en cada caída
+    python3 retention.py retencion.csv --json
 
-Get the file from Studio: Analytics -> a video -> Engagement -> the audience-retention chart ->
-the download icon -> "Audience retention". Two columns, a position (percent or seconds) and a
-percentage still watching.
+Consigue el archivo en Studio: un vídeo -> Estadísticas -> Interacción -> el gráfico de retención de
+la audiencia -> el icono de descarga -> "Retención de la audiencia". Dos columnas: una posición
+(porcentaje o segundos) y el porcentaje que sigue viendo.
 
-It reports three things, because they are three different problems with three different fixes:
-  HOOK LEAK    what you lost in the first 30 seconds
-  CLIFFS       single steep drops - a specific moment people left at
-  SLIDE        the steady bleed rate across the flat middle
+Informa de tres cosas, porque son tres problemas distintos con tres arreglos distintos:
+  FUGA EN EL GANCHO   lo que perdiste en los primeros 30 segundos
+  CAÍDAS              bajadas bruscas puntuales: un momento concreto en el que la gente se fue
+  GOTEO               el ritmo de pérdida constante en la parte central
 
-With --transcript it prints what you were saying at each cliff, which is the only version of this
-report you can act on without scrubbing the video yourself.
+Con --transcript imprime lo que estabas diciendo en cada caída, que es la única versión de este
+informe sobre la que puedes actuar sin revisar el vídeo tú mismo.
 """
 import csv, json, os, re, sys
 
@@ -39,14 +39,14 @@ def main():
     files = [x for x in a if not x.startswith("--") and x != tr]
     if not files or not os.path.exists(files[0]): print(__doc__); sys.exit(1)
     rows = load_csv(files[0])
-    if len(rows) < 8: print("could not read at least 8 data points from that csv"); sys.exit(1)
+    if len(rows) < 8: print("no se han podido leer al menos 8 puntos de datos de ese csv"); sys.exit(1)
     xs = [r[0] for r in rows]; ys = [r[1] for r in rows]
     pct_axis = max(xs) <= 100.5
     dur = None
     if "--duration" in a: dur = float(a[a.index("--duration") + 1])
     def at(x): return (x / 100.0 * dur) if (pct_axis and dur) else x
     start = ys[0] or 100.0
-    # HOOK: the first 30 seconds, or the first 10% when the axis is a percentage and we have no duration
+    # GANCHO: los primeros 30 segundos, o el primer 10% si el eje es un porcentaje y no hay duración
     cutoff = 30.0 if not pct_axis else (30.0 / dur * 100 if dur else 10.0)
     hook_end = min((y for x, y in rows if x <= cutoff), default=start)
     hook_leak = start - hook_end
@@ -74,17 +74,17 @@ def main():
     out = {"points": len(rows), "start": start, "hook_leak": round(hook_leak, 2),
            "end": ys[-1], "cliffs": cliffs, "slide_per_unit": round(slide, 3), "said": said}
     if as_json: print(json.dumps(out, indent=1)); return
-    print(f"\n  {files[0]}   {len(rows)} points   {ys[0]:.1f}% -> {ys[-1]:.1f}%\n")
-    verdict = "healthy" if hook_leak < 25 else "leaking" if hook_leak < 40 else "severe"
-    print(f"  HOOK LEAK   {hook_leak:.1f}% lost in the opening   [{verdict}]")
-    print(f"              under 25 is healthy for this length. Fix the first line before anything else.\n")
-    print("  CLIFFS      the moments people actually left")
+    print(f"\n  {files[0]}   {len(rows)} puntos   {ys[0]:.1f}% -> {ys[-1]:.1f}%\n")
+    verdict = "sana" if hook_leak < 25 else "con fuga" if hook_leak < 40 else "grave"
+    print(f"  FUGA EN EL GANCHO   {hook_leak:.1f}% perdido en el arranque   [{verdict}]")
+    print(f"                      menos de 25 es sano para esta duración. Arregla la primera frase antes que nada.\n")
+    print("  CAÍDAS              los momentos en los que la gente se fue de verdad")
     for c in cliffs:
         where = f"{c['at_seconds']:.0f}s" if c["at_seconds"] is not None else f"{c['from']}"
-        print(f"    -{c['lost']:5.1f}%  at {where:>8}" + (f"   \"{said.get(str(c['from']),'')}\"" if said else ""))
-    if not cliffs: print("    none steeper than 0.8% - the loss is all slide, not moments")
-    print(f"\n  SLIDE       {slide:.3f}% per unit across the middle")
-    print( "              a flat slide is pacing, not content. Cut the middle, do not rewrite it.\n")
+        print(f"    -{c['lost']:5.1f}%  en {where:>8}" + (f"   \"{said.get(str(c['from']),'')}\"" if said else ""))
+    if not cliffs: print("    ninguna de más del 0,8%: la pérdida es todo goteo, no momentos")
+    print(f"\n  GOTEO               {slide:.3f}% por unidad en la parte central")
+    print( "                      un goteo uniforme es cuestión de ritmo, no de contenido. Recorta la parte central, no la reescribas.\n")
 
 if __name__ == "__main__":
     main()

@@ -1,36 +1,37 @@
 ---
 name: yt-shorts
 description: >-
-  Find the Shorts hiding inside a long video and write them, using the
-  transcript to pick self-contained moments. Use for "cut this into shorts",
-  "clip this", "repurpose this video", "what should I clip".
+  Encuentra los Shorts escondidos dentro de un vídeo largo y escríbelos,
+  usando la transcripción para elegir momentos que se entienden solos. Úsala
+  para "saca shorts de esto", "recórtalo en clips", "reaprovecha este vídeo",
+  "qué fragmentos corto".
 ---
 
 # yt-shorts
 
-A Short cut out of a long video is not a clip of the best moment. It is a moment that **survives
-without the video around it**, which is a much smaller set.
+Un Short sacado de un vídeo largo no es un clip del mejor momento. Es un momento que **se sostiene
+sin el vídeo que lo rodea**, y de esos hay muchos menos.
 
-## Picking
+## Cómo elegir
 
-Read the transcript and find spans of 20-55 seconds where all three are true:
+Lee la transcripción y busca tramos de 20 a 55 segundos en los que se cumplan las tres cosas:
 
-1. It opens on a complete thought. If the first sentence needs the previous minute, it is not a Short.
-2. There is a turn in it - a claim, then something that complicates or proves it.
-3. It ends on a line, not a trail-off.
+1. Empieza con una idea completa. Si la primera frase necesita el minuto anterior, no es un Short.
+2. Tiene un giro: una afirmación y luego algo que la complica o la demuestra.
+3. Termina en una frase, no en algo que se va apagando.
 
-Rank the candidates and show the user the top five with their timecodes and first line, so they can
-reject one without reading the whole transcript.
+Ordena los candidatos y enséñale al usuario los cinco mejores con sus códigos de tiempo y su primera
+frase, para que pueda descartar uno sin leerse toda la transcripción.
 
-## Writing each one
+## Cómo escribir cada uno
 
-- **A NEW first line.** The long video's line assumes context this viewer does not have. Write the
-  replacement and run it through `../yt-script/hookscore.py`.
-- **On-screen text for the first two seconds**, different words from the spoken line.
-- **A loop point**: what the last line sets up so the first line answers it.
-- Vertical framing note - what gets cropped out of a 16:9 frame and whether that matters.
+- **Una primera frase NUEVA.** La del vídeo largo da por hecho un contexto que este espectador no
+  tiene. Escribe la sustituta y pásala por `../yt-script/hookscore.py`.
+- **Texto en pantalla para los dos primeros segundos**, con palabras distintas de las que se dicen.
+- **Un punto de bucle**: qué plantea la última frase para que la primera la responda.
+- Nota de encuadre vertical: qué se pierde al recortar un plano 16:9 y si importa.
 
-## The gate
+## El filtro final
 
-Nothing here publishes. This skill writes and you publish. Every output ends in a block the user
-copies, and the last line of every run is the question: **ship it, or change it?**
+Aquí no se publica nada. Esta skill escribe y tú publicas. Cada resultado termina en un bloque que
+el usuario copia, y la última línea de cada ejecución es la pregunta: **¿lo publicas o lo cambias?**

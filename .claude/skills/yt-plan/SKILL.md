@@ -1,46 +1,45 @@
 ---
 name: yt-plan
 description: >-
-  Plan a week or a month of YouTube uploads - what to post, when, and in
-  what order, sized to the creator's actual capacity. Use for "plan my
-  week", "content calendar", "what should I post", "I have no idea what to
-  make next".
+  Planifica una semana o un mes de subidas a YouTube: qué publicar, cuándo y
+  en qué orden, ajustado al tiempo real del creador. Úsala para "planifica mi
+  semana", "calendario de contenido", "qué publico", "no tengo ni idea de qué
+  hacer ahora".
 ---
 
 # yt-plan
 
-A plan that does not fit the week is a list of regrets. Ask two questions before writing anything:
-**how many hours do you actually have**, and **what is already half-made**.
+Un plan que no cabe en la semana es una lista de remordimientos. Haz dos preguntas antes de escribir
+nada: **cuántas horas tienes de verdad** y **qué tienes ya a medio hacer**.
 
-## Before you write
+## Antes de escribir
 
-1. Read `~/.claude/youtube/voice.md` if it exists. That is the user's voice profile: how they talk
-   on camera, the words they never use, who they are talking to, what they will not claim. If it
-   does not exist, ask for **three of their own videos**, read or transcribe them, infer the voice,
-   and write the file. A script in the wrong voice is worse than no script, because they have to
-   read it out loud.
-2. Never invent a number, a result or a source. If a figure would strengthen it and you do not have
-   one, ask for it or write the line without it.
+1. Lee `~/.claude/youtube/voice.md` si existe. Es el perfil de voz del usuario: cómo habla delante
+   de la cámara, las palabras que nunca usa, a quién le habla y lo que no va a afirmar. Si no existe,
+   pide **tres de sus propios vídeos**, léelos o transcríbelos, deduce la voz y escribe el archivo.
+   Un guion con la voz equivocada es peor que no tener guion, porque tiene que leerlo en voz alta.
+2. No te inventes nunca un número, un resultado ni una fuente. Si una cifra lo reforzaría y no la
+   tienes, pídela o escribe la frase sin ella.
 
-## The shape of a week
+## La forma de una semana
 
-- **One anchor.** The video the week is for. It gets the most time and it goes out on the day the
-  channel's own analytics say is best - ask for that, do not assume Tuesday.
-- **One cheap one.** Built from something that exists: a clip, a reaction, a follow-up to the
-  comment that got the most replies last week.
-- **Shorts from the anchor.** Three, cut from the long video, not written separately. `/yt-shorts`
-  finds them.
+- **Un vídeo ancla.** El vídeo para el que es la semana. Se lleva la mayor parte del tiempo y sale el
+  día que según las estadísticas del propio canal funciona mejor: pregúntalo, no des por hecho que
+  es el martes.
+- **Uno barato.** Hecho a partir de algo que ya existe: un fragmento, una reacción, una continuación
+  del comentario que más respuestas tuvo la semana pasada.
+- **Shorts sacados del ancla.** Tres, recortados del vídeo largo, no escritos aparte. `/yt-shorts`
+  los encuentra.
 
-Three uploads on a seven-day week, not seven. A plan that posts daily is not a plan anyone
-recognises, and the empty days are what make the filled ones survive a bad week.
+Tres subidas en una semana de siete días, no siete. Un plan que publica a diario no lo reconoce
+nadie, y los días vacíos son lo que permite que los llenos aguanten una mala semana.
 
-## What to hand back
+## Qué entregar
 
-A table: day, format, working title, the one sentence it promises, and what already exists for it.
-Then the honest line at the bottom - how many hours this costs, and what to drop first if the week
-goes wrong.
+Una tabla: día, formato, título provisional, la frase que promete y lo que ya existe para él. Y al
+final la línea honesta: cuántas horas cuesta esto y qué quitar primero si la semana se tuerce.
 
-## The gate
+## El filtro final
 
-Nothing here publishes. This skill writes and you publish. Every output ends in a block the user
-copies, and the last line of every run is the question: **ship it, or change it?**
+Aquí no se publica nada. Esta skill escribe y tú publicas. Cada resultado termina en un bloque que
+el usuario copia, y la última línea de cada ejecución es la pregunta: **¿lo publicas o lo cambias?**

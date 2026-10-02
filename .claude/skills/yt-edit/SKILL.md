@@ -1,39 +1,42 @@
 ---
 name: yt-edit
 description: >-
-  Turn a raw recording's transcript into an edit decision list - dead air,
-  filler cues and retakes, with timecodes. Use for "edit this", "cut the
-  dead space", "tighten this video", "I rambled", or any request to shorten
-  footage from a transcript.
+  Convierte la transcripción de una grabación en bruto en una lista de
+  decisiones de edición: silencios, muletillas y repeticiones, con códigos de
+  tiempo. Úsala para "edita esto", "quita los silencios", "acorta este
+  vídeo", "me enrollé", o cualquier petición de recortar material a partir de
+  una transcripción.
 ---
 
 # yt-edit
 
-An edit decision list from a timestamped transcript. It prints the cuts. You apply them.
+Una lista de decisiones de edición (EDL) a partir de una transcripción con marcas de tiempo. Imprime
+los cortes. Tú los aplicas.
 
 ```bash
-python3 deadair.py transcript.srt              # srt, vtt or whisper json
-python3 deadair.py transcript.srt --floor 0.35 --json
+python3 deadair.py transcripcion.srt              # srt, vtt o json de whisper
+python3 deadair.py transcripcion.srt --floor 0.35 --json
 ```
 
-No transcript yet? Ask for one, or produce one first - `whisper`, `faster-whisper`, or the caption
-track YouTube generates on an unlisted upload all work. Do not guess at timings.
+¿Todavía no hay transcripción? Pídela o genérala primero: `whisper`, `faster-whisper` o los
+subtítulos automáticos que crea YouTube al subir un vídeo oculto sirven. No adivines los tiempos.
 
-## What it finds
+## Qué encuentra
 
-- **DEAD** - gaps longer than the floor, trimmed from the MIDDLE so both sides keep a breath.
-  Cutting flush against speech is what makes a tightened take sound gasping.
-- **FILLER** - cues that are nothing but "um", "so yeah", "basically".
-- **REPEAT** - a sentence restarted. Compared against the last cue that was actually speech, not
-  the literal previous cue, because most retakes have an "um" between the two attempts.
+- **SILENCIO**: huecos más largos que el umbral, recortados por el MEDIO para que a los dos lados
+  quede una respiración. Cortar pegado a la voz es lo que hace que una toma acortada suene sin aliento.
+- **MULETILLA**: fragmentos que no son más que "eh", "pues nada", "o sea", "básicamente".
+- **REPETICIÓN**: una frase que se vuelve a empezar. Se compara con el último fragmento que tenía
+  habla de verdad, no con el anterior literal, porque la mayoría de las repeticiones tienen un "eh"
+  entre los dos intentos.
 
-## What it will not do
+## Qué no hace
 
-It does not touch media. It has no opinion about your B-roll. A 40% cut on the report is a 40% cut
-of SPEECH, and if the video has a long silent demo in it that number is wrong - check the report
-against the footage before you trust the runtime at the bottom.
+No toca el vídeo. No opina sobre tus recursos (B-roll). Un recorte del 40% en el informe es un
+40% del HABLA; si el vídeo tiene una demostración larga sin voz, ese número está mal. Compara el
+informe con el material antes de fiarte de la duración final.
 
-## The gate
+## El filtro final
 
-Nothing here publishes. This skill writes and you publish. Every output ends in a block the user
-copies, and the last line of every run is the question: **ship it, or change it?**
+Aquí no se publica nada. Esta skill escribe y tú publicas. Cada resultado termina en un bloque que
+el usuario copia, y la última línea de cada ejecución es la pregunta: **¿lo publicas o lo cambias?**
